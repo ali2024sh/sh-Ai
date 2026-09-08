@@ -419,7 +419,7 @@ class AIService:
                 from google.genai import types
                 client = genai.Client(
                     api_key=key,
-                    http_options={'timeout': 180.0}
+                    http_options={'timeout': 180_000.0}
                 )
                 combined_prompt = f"{system_prompt}\n\n{user_prompt}"
                 
@@ -510,7 +510,7 @@ class AIService:
             raise ValueError("مفتاح Gemini API غير مدخل.")
         from google import genai
         from google.genai import types
-        client = genai.Client(api_key=key, http_options={'timeout': 180.0})
+        client = genai.Client(api_key=key, http_options={'timeout': 180_000.0})
         combined_prompt = f"{system_prompt}\n\n{user_prompt}"
         config_kwargs = {"temperature": temperature, "max_output_tokens": 8192}
         stream = client.models.generate_content_stream(model=clean_model, contents=combined_prompt, config=types.GenerateContentConfig(**config_kwargs))
