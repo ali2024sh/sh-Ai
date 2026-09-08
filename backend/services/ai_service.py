@@ -61,7 +61,7 @@ class AIService:
     @staticmethod
     def clean_model_name(model_name: Optional[str]) -> str:
         if not model_name:
-            return "gemini-1.5-flash"
+            return ENV_MODEL or "gemini-3.6-flash"
         name = model_name.strip()
         if name.startswith("models/"):
             name = name[len("models/"):]
@@ -256,9 +256,9 @@ class AIService:
         if not discovered_models:
             defaults = {
                 "gemini": [
-                    {"id": "gemini-1.5-flash", "name": "Gemini 1.5 Flash (الأسرع والأمثل)"},
-                    {"id": "gemini-2.0-flash", "name": "Gemini 2.0 Flash (الجيل الثاني)"},
-                    {"id": "gemini-1.5-pro", "name": "Gemini 1.5 Pro (المتقدم)"}
+                    {"id": "gemini-3.6-flash", "name": "Gemini 3.6 Flash (الأسرع والأمثل)"},
+                    {"id": "gemini-2.5-flash", "name": "Gemini 2.5 Flash (الجيل الثاني)"},
+                    {"id": "gemini-2.5-pro", "name": "Gemini 2.5 Pro (المتقدم)"}
                 ],
                 "ollama": [
                     {"id": "qwen2.5:latest", "name": "Qwen 2.5 (Alibaba)"},
@@ -407,9 +407,9 @@ class AIService:
 
         candidate_models = [
             clean_model,
-            "gemini-1.5-flash",
-            "gemini-2.0-flash",
-            "gemini-1.5-pro"
+            "gemini-3.6-flash",
+            "gemini-2.5-flash",
+            "gemini-2.5-pro"
         ]
 
         last_error = None
