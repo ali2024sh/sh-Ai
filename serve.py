@@ -3,6 +3,7 @@
 يخدم الواجهة المبنية (frontend/dist) عبر نفس منفذ الـ API (افتراضياً 8001)
 """
 import os
+from contextlib import asynccontextmanager
 from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, Request
@@ -13,14 +14,24 @@ from fastapi.staticfiles import StaticFiles
 from backend.routes.api import router as api_router
 from backend.config import ALLOWED_ORIGINS, PORT
 from backend.services.ai_service import use_base_rules_var
+from backend import seed_demo
 
 BASE_DIR = Path(__file__).resolve().parent
 DIST_DIR = BASE_DIR / "frontend" / "dist"
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    seed_demo.run()
+    seed_demo.seed_teams_if_empty()
+    yield
+
 
 app = FastAPI(
     title="ذكاء | EduAI API",
     description="Backend API for EduAI Academic Assistant Platform (RAG, Summaries, Quizzes, Proofreader)",
     version="2.1.0",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
