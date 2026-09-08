@@ -12,8 +12,10 @@
 ## 2) النشر على Render (الطريقة الموصى بها)
 
 ### الطريقة A — عبر Blueprint (تلقائية بالكامل)
-1. في GitHub انقل ملف `render.yaml` الموجود في جذر المستودع.
-2. في لوحة Render: **New → Blueprint** → اختر المستودع `ali2024sh/sh-Ai`.
+0. **بضغطة واحدة** (المستودع عام): افتح
+   `https://render.com/deploy?repo=ali2024sh/sh-Ai`
+   → اختر الفرع **`main`** → سيكتشف `render.yaml` وينشئ الخدمة.
+1. (أو يدوياً) في لوحة Render: **New → Blueprint** → اختر المستودع `ali2024sh/sh-Ai`.
    Render سيكتشف `render.yaml` وينشئ الخدمة تلقائياً.
 3. بعد الإنشاء: **Environment → Add Environment Variable**:
    - `GEMINI_API_KEY` = مفتاحك الحقيقي (بدونه تعمل المنصة لكن التوليد يعرض رسالة توجيهية).
